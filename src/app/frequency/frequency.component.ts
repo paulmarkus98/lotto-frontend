@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TicketService} from '../@core/services/ticket.service';
-import {tap} from 'rxjs';
+import {catchError, of, tap} from 'rxjs';
 
 @Component({
   selector: 'app-frequency',
@@ -10,6 +10,7 @@ import {tap} from 'rxjs';
 export class FrequencyComponent implements OnInit {
 
   counter: any = {};
+  noTickets: boolean | null = null;
 
   constructor(private ticketService: TicketService) {
   }
@@ -18,14 +19,18 @@ export class FrequencyComponent implements OnInit {
     this.ticketService.getFrequency()
       .pipe(
         tap((result: any): void => {
+          this.noTickets = false;
           this.counter = result;
-          console.log('result: ', result);
+        }),
+        catchError(error => {
+          if (error.status === 404) {
+            this.noTickets = true;
+          } else {
+            console.error('An error occurred:', error);
+          }
+          return of(null);
         })
       ).subscribe();
-  }
-
-  formatMessage(number: string, frequency: number): string {
-    return `Numarul ${number} a aparut de ${frequency === 1 ? 'o data' : frequency + ' ori'}`;
   }
 
   protected readonly Object = Object;

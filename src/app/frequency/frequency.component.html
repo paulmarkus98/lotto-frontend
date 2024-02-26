@@ -1,3 +1,6 @@
+<h1 class="text-center mt-4" *ngIf="noTickets === true">No data to analyze.</h1>
+<h1 class="text-center my-4" *ngIf="noTickets === false">The frequency of each number drawn.</h1>
+
 <div *ngFor="let item of Object.entries(counter)">
   <h4 class="text-center">
     Number <span style="color: red;">{{ item[0] }}</span>  {{ item[1] === 0 ? 'never appeared' : 'appeared ' + (item[1] === 1 ? 'once' : item[1] + ' times') }}
