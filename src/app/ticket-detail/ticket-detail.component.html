@@ -1,0 +1,14 @@
+<button class=" m-3 btn btn-outline-secondary" (click)="goToTicketsPage()">View tickets</button><div class="text-center my-3">
+  <h2>Ticket:</h2>
+</div>
+<div class="lotto-ticket text-center">
+  <div class="row">
+    <div *ngFor="let _ of boxes, let index = index" class="col-12 col-sm-4 col-lg-3 col-xl-2">
+      <app-ticket-form [generatedArrays]="numbers[index]">
+      </app-ticket-form>
+    </div>
+    <div *ngIf="superzahl">
+      <h3>Superzahl: {{ superzahl }}</h3>
+    </div>
+  </div>
+</div>

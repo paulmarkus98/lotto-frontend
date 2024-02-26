@@ -1,0 +1,9 @@
+.message-modal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  background-color: #ff9966;
+  padding: 20px;
+  border-radius: 5px;
+}

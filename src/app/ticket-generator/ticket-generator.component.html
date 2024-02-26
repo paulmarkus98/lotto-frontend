@@ -1,0 +1,41 @@
+<div class="custom-background">
+  <div class="row justify-content-center my-4 mx-4 px-3" *ngIf="numberOfBoxesSelected">
+    <h3 class="text-center">Ticket generated:</h3>
+    <div class="lotto-ticket text-center">
+      <div class="row">
+        <div *ngFor="let _ of boxes, let index = index" class="col-12 col-sm-4 col-lg-3 col-xl-2">
+          <app-ticket-form [generatedArrays]="generatedArrays[index]">
+          </app-ticket-form>
+        </div>
+        <div *ngIf="superzahl">
+          <h3>Superzahl: {{ superzahl }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!numberOfBoxesSelected" class="text-center mt-4">
+    <h1>Select the number of boxes:</h1>
+    <div class="input-group mt-3 mx-auto" id="numberInput">
+      <input type="number" [(ngModel)]="numberOfBoxes" class="form-control" min="1" max="15">
+      <button class="btn btn-info mx-2 draw-ticket" type="button" (click)="drawTicket()">Draw Tickets</button>
+    </div>
+
+    <div class="text-center mt-5">
+      <div class="mt-3">
+        <input type="checkbox" class="btn-check" id="btn-check-2-outlined" autocomplete="off"
+               [(ngModel)]="superazhlEnabled">
+        <label class="btn btn-outline-secondary" for="btn-check-2-outlined">Superzahl</label><br>
+      </div>
+
+      <div class="mt-3" *ngIf="superazhlEnabled">
+        <h5 for="userNumber">Insert a number between 1 and 10: </h5>
+        <input class="form-control mx-auto" type="number" id="userNumber" [(ngModel)]="superzahl" min="1" max="10">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="numberOfBoxesSelected" class="text-center m-4">
+  <button type="button" (click)="redrawTicket()" class="text-center btn btn-warning"> Redraw Ticket</button>
+</div>

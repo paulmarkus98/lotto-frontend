@@ -1,0 +1,5 @@
+<div *ngFor="let item of Object.entries(counter)">
+  <h4 class="text-center">
+    Number <span style="color: red;">{{ item[0] }}</span>  {{ item[1] === 0 ? 'never appeared' : 'appeared ' + (item[1] === 1 ? 'once' : item[1] + ' times') }}
+  </h4>
+</div>

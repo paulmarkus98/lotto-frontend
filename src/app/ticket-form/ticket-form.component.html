@@ -1,0 +1,5 @@
+<div class="box">
+  <div *ngFor="let number of numbers" class="cell" [class.chosenNumber]="generatedArrays.includes(number)">
+    {{ number }}
+  </div>
+</div>
